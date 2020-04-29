@@ -170,6 +170,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Documents
     put:
       summary: Replace document
       operationId: put-documents-id
@@ -177,6 +179,8 @@ paths:
         '200':
           description: OK
       description: ''
+      tags:
+        - Documents
   /questionnaires:
     put:
       parameters:
