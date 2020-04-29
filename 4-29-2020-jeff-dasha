@@ -1,0 +1,324 @@
+openapi: 3.0.0
+info:
+  description: |
+    Credentialing is the verification process that GoodHire follows to ensure companies requesting reports are legitimate.
+  version: 1.0.0
+  title: Credentialing API 2
+tags:
+  - name: Credentialing
+    description: Everything about Credentialing
+paths:
+  /applications:
+    post:
+      tags:
+        - Credentialing
+      summary: Starts credentialing process
+      operationId: startCredentialing
+      responses:
+        '201':
+          description: Created
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/ApplicationRequest'
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-applications
+      responses:
+        '200':
+          description: OK
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: organizationId
+  '/applications/{id}':
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the credentialing
+      tags:
+        - Credentialing
+      summary: Returns a credentialing details
+      operationId: getCredentialing
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Credentialing not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+  '/applications/{id}/status':
+    post:
+      tags:
+        - Credentialing
+      summary: Add a hold to the application
+      operationId: setOnHold
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: application not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/HoldRequest'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Status:
+                  type: string
+                Notes:
+                  type: string
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: ''
+      operationId: get-applications-id-status
+      responses:
+        '200':
+          description: OK
+  /verification-result:
+    put:
+      tags:
+        - Credentialing
+      summary: Updates company application info
+      operationId: update
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: application not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/CompanyInfoRequest'
+      description: ''
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-verificationResult
+      responses:
+        '200':
+          description: OK
+  '/documents/{id}':
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the document
+      tags:
+        - Credentialing
+      summary: Is used to get a submitted document
+      operationId: getDocs
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Credit Credentialing not found
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: ''
+      operationId: delete-documents-id
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: ''
+      operationId: put-documents-id
+      responses:
+        '200':
+          description: OK
+  /questionnaires:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the credit credentialing
+      tags:
+        - Credentialing
+      summary: Adds the credit credentialing questionnaire
+      operationId: addCreditCredentialinQquestionnaire
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Credit Credentialing not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/QuestionnaireRequest'
+    parameters: []
+  /inspection:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the credit credentialing
+      tags:
+        - Credentialing
+      summary: Adds Credit Credentialing Onsite Inspection Info
+      operationId: addOnSiteInspection
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Credit Credentialing not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/InspectionRequest'
+  /exemption:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the credit credentialing
+      tags:
+        - Credentialing
+      summary: Adds On-site inspection exemption to credit credentialing
+      operationId: addOnSiteInspectionExemption
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Credit Credentialing not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/ExemptionRequest'
+  /payment:
+    post:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the credit credentialing
+      tags:
+        - Credentialing
+      summary: Marks that user paid for On-site inspection
+      operationId: markAsPaid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Credit Credentialing not found
+        '405':
+          description: Validation exception
+      requestBody:
+        $ref: '#/components/requestBodies/PaymentRequest'
+  /documents:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-documents
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: ''
+      operationId: get-documents
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: applicationId
+        - schema:
+            type: string
+          in: query
+          name: type
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  requestBodies:
+    UserInfoRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserRequest'
+      description: User Info
+      required: true
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserInfo'
+      description: List of user object
+      required: true
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+          scopes:
+            'write:all': modify everything
+            'read:all': read everything
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
