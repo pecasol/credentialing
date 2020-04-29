@@ -13,7 +13,7 @@ paths:
       tags:
         - Credentialing
       summary: Starts credentialing process
-      operationId: startCredentialing
+      operationId: create-application
       responses:
         '201':
           description: Created
@@ -23,7 +23,7 @@ paths:
         $ref: '#/components/requestBodies/ApplicationRequest'
     parameters: []
     get:
-      summary: ''
+      summary: Get applications
       operationId: get-applications
       responses:
         '200':
@@ -45,8 +45,8 @@ paths:
           description: ID of the credentialing
       tags:
         - Credentialing
-      summary: Returns a credentialing details
-      operationId: getCredentialing
+      summary: Get application
+      operationId: get-application-by-id
       responses:
         '400':
           description: Invalid ID supplied
@@ -73,8 +73,8 @@ paths:
     post:
       tags:
         - Credentialing
-      summary: Add a hold to the application
-      operationId: setOnHold
+      summary: Change the application status
+      operationId: change-application-status
       responses:
         '200':
           description: OK
@@ -95,6 +95,7 @@ paths:
                   type: string
                 Notes:
                   type: string
+      description: ''
     parameters:
       - schema:
           type: string
@@ -127,11 +128,12 @@ paths:
       description: ''
     parameters: []
     get:
-      summary: ''
-      operationId: get-verificationResult
+      summary: Get result of the credentialing for specific application
+      operationId: get-verification-result
       responses:
         '200':
           description: OK
+      description: ''
   '/documents/{id}':
     get:
       parameters:
@@ -143,8 +145,8 @@ paths:
           description: ID of the document
       tags:
         - Credentialing
-      summary: Is used to get a submitted document
-      operationId: getDocs
+      summary: Get document
+      operationId: get-document-by-id
       responses:
         '400':
           description: Invalid ID supplied
@@ -157,17 +159,18 @@ paths:
         in: path
         required: true
     delete:
-      summary: ''
+      summary: Remove document
       operationId: delete-documents-id
       responses:
         '200':
           description: OK
     put:
-      summary: ''
+      summary: Replace document
       operationId: put-documents-id
       responses:
         '200':
           description: OK
+      description: ''
   /questionnaires:
     put:
       parameters:
@@ -268,13 +271,13 @@ paths:
   /documents:
     parameters: []
     post:
-      summary: ''
+      summary: Upload document
       operationId: post-documents
       responses:
         '200':
           description: OK
     get:
-      summary: ''
+      summary: Get documents
       operationId: get-documents
       responses:
         '200':
