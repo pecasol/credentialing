@@ -43,8 +43,6 @@ paths:
             type: string
           required: true
           description: ID of the credentialing
-      tags:
-        - Credentialing
       summary: Get application
       operationId: get-application-by-id
       responses:
@@ -143,8 +141,6 @@ paths:
             type: string
           required: true
           description: ID of the document
-      tags:
-        - Credentialing
       summary: Get document
       operationId: get-document-by-id
       responses:
@@ -180,8 +176,6 @@ paths:
             type: string
           required: true
           description: ID of the credit credentialing
-      tags:
-        - Credentialing
       summary: Adds the credit credentialing questionnaire
       operationId: addCreditCredentialinQquestionnaire
       responses:
@@ -205,8 +199,6 @@ paths:
             type: string
           required: true
           description: ID of the credit credentialing
-      tags:
-        - Credentialing
       summary: Adds Credit Credentialing Onsite Inspection Info
       operationId: addOnSiteInspection
       responses:
@@ -229,8 +221,6 @@ paths:
             type: string
           required: true
           description: ID of the credit credentialing
-      tags:
-        - Credentialing
       summary: Adds On-site inspection exemption to credit credentialing
       operationId: addOnSiteInspectionExemption
       responses:
@@ -253,8 +243,6 @@ paths:
             type: string
           required: true
           description: ID of the credit credentialing
-      tags:
-        - Credentialing
       summary: Marks that user paid for On-site inspection
       operationId: markAsPaid
       responses:
