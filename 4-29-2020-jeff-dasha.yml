@@ -69,8 +69,6 @@ paths:
         required: true
   '/applications/{id}/status':
     post:
-      tags:
-        - Credentialing
       summary: Change the application status
       operationId: change-application-status
       responses:
@@ -108,8 +106,6 @@ paths:
           description: OK
   /verification-result:
     put:
-      tags:
-        - Credentialing
       summary: Updates company application info
       operationId: update
       responses:
