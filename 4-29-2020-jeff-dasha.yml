@@ -10,8 +10,6 @@ tags:
 paths:
   /applications:
     post:
-      tags:
-        - Credentialing
       summary: Starts credentialing process
       operationId: create-application
       responses:
