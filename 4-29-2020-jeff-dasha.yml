@@ -19,6 +19,8 @@ paths:
           description: Validation exception
       requestBody:
         $ref: '#/components/requestBodies/ApplicationRequest'
+      tags:
+        - Applications
     parameters: []
     get:
       summary: Get applications
@@ -32,6 +34,8 @@ paths:
             type: string
           in: query
           name: organizationId
+      tags:
+        - Applications
   '/applications/{id}':
     get:
       parameters:
@@ -59,6 +63,8 @@ paths:
               type: object
               properties: {}
         description: ''
+      tags:
+        - Applications
     parameters:
       - schema:
           type: string
@@ -90,6 +96,8 @@ paths:
                 Notes:
                   type: string
       description: ''
+      tags:
+        - Applications
     parameters:
       - schema:
           type: string
@@ -102,6 +110,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Applications
   /verification-result:
     put:
       summary: Updates company application info
@@ -118,6 +128,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/CompanyInfoRequest'
       description: ''
+      tags:
+        - Verification results
     parameters: []
     get:
       summary: Get result of the credentialing for specific application
@@ -126,6 +138,8 @@ paths:
         '200':
           description: OK
       description: ''
+      tags:
+        - Verification results
   '/documents/{id}':
     get:
       parameters:
@@ -142,6 +156,8 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Credit Credentialing not found
+      tags:
+        - Documents
     parameters:
       - schema:
           type: string
@@ -183,6 +199,8 @@ paths:
           description: Validation exception
       requestBody:
         $ref: '#/components/requestBodies/QuestionnaireRequest'
+      tags:
+        - Credit verification supporting steps
     parameters: []
   /inspection:
     put:
@@ -206,6 +224,8 @@ paths:
           description: Validation exception
       requestBody:
         $ref: '#/components/requestBodies/InspectionRequest'
+      tags:
+        - Credit verification supporting steps
   /exemption:
     put:
       parameters:
@@ -228,6 +248,8 @@ paths:
           description: Validation exception
       requestBody:
         $ref: '#/components/requestBodies/ExemptionRequest'
+      tags:
+        - Credit verification supporting steps
   /payment:
     post:
       parameters:
@@ -250,6 +272,8 @@ paths:
           description: Validation exception
       requestBody:
         $ref: '#/components/requestBodies/PaymentRequest'
+      tags:
+        - Credit verification supporting steps
   /documents:
     parameters: []
     post:
@@ -258,6 +282,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Documents
     get:
       summary: Get documents
       operationId: get-documents
@@ -273,6 +299,8 @@ paths:
             type: string
           in: query
           name: type
+      tags:
+        - Documents
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'
